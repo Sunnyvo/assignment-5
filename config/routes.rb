@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  get "friends" => "friends#index"
+  get "myfriends" => "users#friends"
+  get "friendedby" => "users#friends"
   get "update-profile" => "users#edit"
   get "profile" => "users#show"
   # get "messages/inbox"

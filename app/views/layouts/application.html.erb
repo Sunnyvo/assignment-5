@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="color:red">
   <head>
     <title>Sicence-chat</title>
     <%= csrf_meta_tags %>
@@ -7,8 +7,8 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body background= "1.jpg" >
-    <nav class="navbar">
+  <body class="background_image">
+    <nav class="navbar background_navbar">
       <div class="container">
         <div class="navbar-brand">
           <a class="navbar-item" href="/">
@@ -47,8 +47,9 @@
                 </a>
 
                 <div class="navbar-dropdown">
-                  <%= link_to "My Friends", friends_path, class: "navbar-item" %>
-                  <%= link_to "Friended By", friends_path, class: "navbar-item" %>
+                  <%= link_to "My Friends",  myfriends_path(relate: "mf") , class: "navbar-item" %>
+                  <%= link_to "Friended By", friendedby_path(relate: "fb") , class: "navbar-item" %>
+
                 </div>
               </div>
 
@@ -59,8 +60,9 @@
             <% end %>
           </div>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
+
     <%= flash_messages %>
 
     <div class="container" style="margin-top: 20px">

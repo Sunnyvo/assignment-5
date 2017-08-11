@@ -1,3 +1,5 @@
+<h5 >Your friend list</h5>
+
 <table class="table table-br-color">
   <thead>
     <tr style="background-color: #4CAF50;">
@@ -7,7 +9,7 @@
     </tr>
   </thead>
   <tbody>
-    <% User.except(current_user).each do |another_user| %>
+    <% @users.each do |another_user| %>
       <tr>
         <td><%= image_tag another_user.image_url_or_default %></td>
         <td>
@@ -45,3 +47,4 @@
         <li><a class="pagination-link">86</a></li>
       </ul>
     </nav>
+

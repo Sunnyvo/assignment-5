@@ -1,6 +1,6 @@
 .navbar-burger {
   &:hover {
-    background-color: darken($primaryColor, 10%);
+    background-color: darken($purple, 10%);
   }
   > span {
     background-color: white;
@@ -27,4 +27,37 @@ span.icon {
   .icon {
     height: 1.8em;
   }
+}
+
+.background_image {
+    background: image-url("1.jpg");
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+}
+
+body, html {
+    height: 100%;
+}
+
+
+.background_navbar{
+    height: 100px;
+    background: image-url("2.jpg");
+    /* Full height */
+//     height: 100%;
+
+//     /* Center and scale the image nicely */
+//     background-position: center;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+}
+
+.table-br-color{
+  background-color: #2B3856;
+  color: white;
 }
