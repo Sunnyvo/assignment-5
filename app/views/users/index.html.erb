@@ -1,0 +1,46 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th></th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% User.except(current_user).each do |another_user| %>
+      <tr>
+        <td><%= image_tag another_user.image_url_or_default %></td>
+        <td>
+          <div><%= another_user.name %></div>
+          <div><%= another_user.email %></div>
+        </td>
+        <td>
+          <% if current_user.is_friend?(another_user) %>
+            <%# <%= link_to icon("user-times", "Remove friend"), remove_friend_path(user_id: another_user.id), class: "button is-danger add-remove", method: :delete %>
+            <%= form_for current_user, url: remove_friend_path(user_id: another_user.id), method: :delete,remote: true do |f| %>
+              <button class="button is-danger add-remove"><%= icon("user-times", "Remove Friend") %></button>
+            <% end %>
+          <% else %>
+            <%= form_for current_user.friendships.build(friend: another_user), remote: true do |f| %>
+              <%= f.hidden_field :friend_id %>
+              <button class="button is-primary add-remove"><%= icon("user-plus", "Add Friend") %></button>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    <nav class="pagination is-centered">
+      <a class="pagination-previous">Previous</a>
+      <a class="pagination-next">Next page</a>
+      <ul class="pagination-list">
+        <li><a class="pagination-link">1</a></li>
+        <li><span class="pagination-ellipsis">&hellip;</span></li>
+        <li><a class="pagination-link">45</a></li>
+        <li><a class="pagination-link is-current">46</a></li>
+        <li><a class="pagination-link">47</a></li>
+        <li><span class="pagination-ellipsis">&hellip;</span></li>
+        <li><a class="pagination-link">86</a></li>
+      </ul>
+    </nav>
+  </tbody>
+</table>

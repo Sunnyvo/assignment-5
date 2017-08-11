@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sicence-chat</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body background= "1.jpg" >
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/">
+            <%= image_tag "science.jpg", alt: "Humanbook" %>
+          </a>
+          <div class="navbar-item">
+            <div class="field">
+              <div class="control has-icons-right">
+                <input class="input" type="text" placeholder="Search users">
+                <span class="icon is-right is-small">
+                  <%= fa_icon("search") %>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="navbar-burger burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <div class="navbar-menu" id="navMenu">
+          <div class="navbar-start">
+          </div>
+          <div class="navbar-end">
+            <% if current_user %>
+              <%= link_to profile_path(id: current_user), class: "navbar-item" do %>
+                <%= image_tag current_user.image_url_or_default %>
+                &nbsp;<%= current_user.name %>
+              <% end %>
+
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a href="/" class="navbar-link">
+                  <%= icon("users", "Friends") %>
+                </a>
+
+                <div class="navbar-dropdown">
+                  <%= link_to "My Friends", friends_path, class: "navbar-item" %>
+                  <%= link_to "Friended By", friends_path, class: "navbar-item" %>
+                </div>
+              </div>
+
+              <%= link_to icon("sign-out", "Log out"), logout_path, class: "navbar-item" %>
+            <% else %>
+              <%= link_to "Sign Up", new_user_path, class: "navbar-item" %>
+              <%= link_to "Log In", login_path, class: "navbar-item" %>
+            <% end %>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <%= flash_messages %>
+
+    <div class="container" style="margin-top: 20px">
+    <%= content_for?(:content) ? yield(:content) : yield %>
+    </div>
+  </body>
+</html>

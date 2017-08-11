@@ -1,0 +1,21 @@
+<% content_for(:content) do %>
+<div class="columns">
+  <div class="column is-one-quarter">
+    <aside class="menu">
+      <p class="menu-label">
+        MESSAGES
+      </p>
+      <ul>
+        <li class="menu-list"> <%= link_to "Composes", new_message_path, class: "is-active"%> </li>
+        <li class="menu-list"> <%= link_to "Inbox", inbox_messages_path %> </li>
+        <li class="menu-list"> <%= link_to "Sent", sent_messages_path %> </li>
+      </ul>
+    </aside>
+  </div>
+  <div class="column">
+   <%= yield %>
+  </div>
+</div>
+<% end %>
+
+<%= render file: "layouts/application" %>

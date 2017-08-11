@@ -1,0 +1,9 @@
+<h1>Inbox</h1>
+<% @messages.each do |message| %>
+  <div class="message">
+    <div class="message-header"></div>
+      <strong class=""> From:</strong> <%= message.sender.name %>
+      <strong class=""> To:</strong> <%= message.receiver.name %>
+    <div class="message-body"><%= message.body%> </div>
+  </div>
+<% end %>
