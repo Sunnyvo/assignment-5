@@ -1,47 +1,55 @@
-<table class="table table-br-color">
-  <thead>
-    <tr style="background-color: #4CAF50;">
-      <th >User</th>
-      <th>information</th>
-      <th >Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% User.except(current_user).each do |another_user| %>
-      <tr>
-        <td><%= image_tag another_user.image_url_or_default %></td>
-        <td>
-          <div><%= another_user.name %></div>
-          <div><%= another_user.email %></div>
-        </td>
-        <td>
-          <% if current_user.is_friend?(another_user) %>
-            <%# <%= link_to icon("user-times", "Remove friend"), remove_friend_path(user_id: another_user.id), class: "button is-danger add-remove", method: :delete %>
-            <%= form_for current_user, url: remove_friend_path(user_id: another_user.id), method: :delete,remote: true do |f| %>
-              <button class="button is-danger add-remove"><%= icon("user-times", "Remove Friend") %></button>
-            <% end %>
-          <% else %>
-            <%= form_for current_user.friendships.build(friend: another_user), remote: true do |f| %>
-              <%= f.hidden_field :friend_id %>
-              <button class="button is-primary add-remove"><%= icon("user-plus", "Add Friend") %></button>
-            <% end %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
 
-  </tbody>
-</table>
-    <nav class="pagination is-centered">
-      <a class="pagination-previous">Previous</a>
-      <a class="pagination-next">Next page</a>
-      <ul class="pagination-list">
-        <li><a class="pagination-link">1</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link">45</a></li>
-        <li><a class="pagination-link is-current">46</a></li>
-        <li><a class="pagination-link">47</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link">86</a></li>
-      </ul>
-    </nav>
+<p class="car">
+  <h1>Find some friend here</h1>
+</p>
+<div class=" columns is-multiline">
+  <% User.except(current_user).each do |another_user| %>
+    <aside class="profile-card friend">
+      <header>
+        <%= link_to profile_path(id: another_user) do %>
+          <%= image_tag another_user.image_url_or_default%>
+        <% end %>
+        <h1 class="title is-4"><%= another_user.name %></h1>
+        <h2 class="subtitle is-6"><%= another_user.email %></h2>
+      </header>
+      <div class="profile-bio">
+        <p>Hello Friend is my profile!</p>
+        <p> this profile is not avaiable yet</p>
+      <footer class="card-footer">
+
+            <% if current_user.is_friend?(another_user) %>
+              <a class="card-footer-item">
+                <%= form_for current_user, url: remove_friend_path(user_id: another_user.id), method: :delete,remote: true do |f| %>
+                  <button class="button is-danger add-remove is-inverted"><%= icon("user-times", "Remove Friend") %></button>
+                <% end %>
+              </a>
+                <li class="card-footer-item"> <%= link_to icon("envelope-o","Contact"), new_message_path %> </li>
+            <% else %>
+              <a class="card-footer-item">
+                <%= form_for current_user.friendships.build(friend: another_user), remote: true do |f| %>
+                  <%= f.hidden_field :friend_id %>
+                  <button class="button is-primary add-remove is-inverted"><%= icon("user-plus", "Add Friend") %></button>
+                <% end %>
+              </a>
+            <% end %>
+
+
+      </footer>
+    </aside>
+  <% end %>
+</div>
+
+<nav class="pagination is-centered">
+  <a class="pagination-previous">Previous</a>
+  <a class="pagination-next">Next page</a>
+  <ul class="pagination-list">
+    <li><a class="pagination-link is-current">1</a></li>
+    <li><span class="pagination-ellipsis">&hellip;</span></li>
+    <li><a class="pagination-link">5</a></li>
+    <li><a class="pagination-link ">7</a></li>
+    <li><a class="pagination-link">10</a></li>
+    <li><span class="pagination-ellipsis">&hellip;</span></li>
+    <li><a class="pagination-link">15</a></li>
+  </ul>
+</nav>
+

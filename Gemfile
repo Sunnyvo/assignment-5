@@ -58,3 +58,4 @@ gem 'omniauth-facebook', '~> 4.0.0'
 gem 'turbolinks', '~> 5'
 gem "http"
 gem 'kaminari'
+gem 'google-webfonts-rails'

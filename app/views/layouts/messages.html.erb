@@ -5,10 +5,10 @@
       <p class="menu-label">
         MESSAGES
       </p>
-      <ul>
-        <li class="menu-list"> <%= link_to "Composes", new_message_path, class: "is-active"%> </li>
-        <li class="menu-list"> <%= link_to "Inbox", inbox_messages_path %> </li>
-        <li class="menu-list"> <%= link_to "Sent", sent_messages_path %> </li>
+      <ul class="menu-list">
+        <li> <%= link_to icon("send-o","Composes"), new_message_path, class: "menu-color"%> </li>
+        <li> <%= link_to icon("inbox","Inbox"), inbox_messages_path, class: "menu-color"%> </li>
+        <li> <%= link_to icon("envelope-o","Sent"), sent_messages_path, class: "menu-color"%> </li>
       </ul>
     </aside>
   </div>

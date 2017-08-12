@@ -3,7 +3,7 @@
     background-color: darken($purple, 10%);
   }
   > span {
-    background-color: white;
+    background-color: purple;
   }
 }
 
@@ -32,8 +32,8 @@ span.icon {
 .background_image {
     background: image-url("1.jpg");
     /* Full height */
-    height: 100%;
 
+    height: 100%;
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: repeat;
@@ -46,10 +46,9 @@ body, html {
 
 
 .background_navbar{
-    height: 100px;
     background: image-url("2.jpg");
     /* Full height */
-//     height: 100%;
+    height: 70px;
 
 //     /* Center and scale the image nicely */
 //     background-position: center;
@@ -57,7 +56,15 @@ body, html {
 //     background-size: cover;
 }
 
-.table-br-color{
-  background-color: #2B3856;
-  color: white;
+
+.card-hover:hover {
+  background-color: lightgray;
+}
+
+.columns{
+  padding-top :20px;
+}
+
+.menu-color{
+  -webkit-text-fill-color: purple;
 }

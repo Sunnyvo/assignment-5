@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html style="color:red">
+<html>
   <head>
-    <title>Sicence-chat</title>
+    <title class=>Sicence-chat</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -12,7 +12,7 @@
       <div class="container">
         <div class="navbar-brand">
           <a class="navbar-item" href="/">
-            <%= image_tag "science.jpg", alt: "Humanbook" %>
+            <%= image_tag "science.jpg", alt: "Science chat" %>
           </a>
           <div class="navbar-item">
             <div class="field">
@@ -31,7 +31,7 @@
             <span></span>
           </div>
         </div>
-        <div class="navbar-menu" id="navMenu">
+        <div class="navbar-menu style="color :violet;" id="navMenu">
           <div class="navbar-start">
           </div>
           <div class="navbar-end">
@@ -40,7 +40,8 @@
                 <%= image_tag current_user.image_url_or_default %>
                 &nbsp;<%= current_user.name %>
               <% end %>
-
+              <%= link_to icon("comments-o", "Message"),  messages_path , class: "navbar-item" %>
+              <%= link_to icon("users", "All people"),  users_path , class: "navbar-item" %>
               <div class="navbar-item has-dropdown is-hoverable">
                 <a href="/" class="navbar-link">
                   <%= icon("users", "Friends") %>
