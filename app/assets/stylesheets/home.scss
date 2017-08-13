@@ -1,3 +1,6 @@
+
+
+
 .navbar-burger {
   &:hover {
     background-color: darken($purple, 10%);
@@ -40,8 +43,12 @@ span.icon {
     background-size: cover;
 }
 
-body, html {
-    height: 100%;
+body {
+    background: no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 

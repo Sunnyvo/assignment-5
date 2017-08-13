@@ -19,8 +19,9 @@ A Facebook clone for the Bootcamp Ruby class.
 - [x] User can view the list of friend
 - [x] User can view the the list of friended
 - [x] User can see the other profile (but can't edit)
+- [x] add a scroll bar for container
 - [ ] User can post on her wall
 - [ ] User can view someone else's wall
 - [ ] User can see an awesome profile amination
-- [ ] 
+
 # assignment-5

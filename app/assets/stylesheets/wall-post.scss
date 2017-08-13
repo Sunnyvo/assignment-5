@@ -1,0 +1,35 @@
+.wall {
+  width: 100%;
+  position: absolute;
+  left: 0;
+}
+
+.wall-post {
+  display: inline-block;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  font-family: 'Lato', sans-serif;
+  font-size: 1rem;
+  color: purple;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+
+
+
+  &.wall-post-bg {
+    background: #0DB8B5;
+  }
+
+  > .wall-post-header {
+    padding: 1em;
+    background: rgba(0, 0, 0, 0.2);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  > .wall-post-content {
+    padding: 1em;
+    font-weight: 300;
+  }
+}
