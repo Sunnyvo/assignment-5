@@ -44,8 +44,8 @@ class UsersController < ApplicationController
       @users= current_user.friends
     end
   end
+  
   private
-
   def user_params
     params.require(:user).permit(:name, :email, :password, :image_url)
   end
