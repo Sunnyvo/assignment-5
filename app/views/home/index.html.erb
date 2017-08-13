@@ -1,18 +1,31 @@
 <div class="content">
-  <h2>Welcome</h2>
-
   <% if current_user %>
-    <p>More features are coming. Stay tuned!</p>
+    <h1 style="color:#b5a3b6; text-align: center;">Welcome you to the comumnity of hacking</h1>
+    <div class="columns">
+      <div class="column is-one-third">
+        <div class="notification is-info">
+          <button class="delete"></button>
+          <h3> I can create a chatbox realtime here after learning <strong>nodejs</strong> and <strong>socket.io</strong></h3>
+        </div>
+      </div>
+      <div class="column">
+        <% Post.all.each do |po|%>
+          <div class="card card-inverse card-margin" >
+            <div class="card-header title-padding">
+              <%= time_ago_in_words po.updated_at %> ago
+            </div>
+            <div class="card-name title-padding" style="background-color:#333; border-color: #333; margin-top:5px; color:white">
+                <%= po.user.name %>
+            </div>
+            <div class="card-content" style="background-color:#9f8d89; color:#cd2a07">
+              <%= po.text_post %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
   <% else %>
     <%= link_to "Create An Account", new_user_path, class: "button is-primary" %>
     <%= link_to icon("facebook", "Log in with Facebook"), "/auth/facebook", class: "button is-info" %>
   <% end %>
-
-
-
-
-  <div class="notification is-warning">
-  <button class="delete"></button>
-    we will update soon for this page
-</div>
 </div>

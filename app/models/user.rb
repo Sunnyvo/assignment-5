@@ -18,7 +18,7 @@ class User < ApplicationRecord
   end
 
   def image_url_or_default
-    image_url.presence || "unknown.jpg"
+    image_url.presence || "science.jpg"
   end
 
   def add_friend(another_user)
@@ -52,8 +52,15 @@ class User < ApplicationRecord
   end
 
   def self.receiver_options(user)
-    except(user).map{|e| [e.name, e.id]}
+    user.friends.map{|e| [e.name, e.id]}
   end
 
+  def self.num_friends(user)
+    Friendship.where(user: user).count
+  end
+
+  def self.num_friendedbys(user)
+    Friendship.where(friend: user).count
+  end
 
 end

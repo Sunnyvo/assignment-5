@@ -1,4 +1,4 @@
-<h1>Your friend list</h1>
+<h5 style="color:#b5a3b6; background-color: #1e97bd; text-align: center;"><%= (params[:relate]=="fb")? "Who follows you" : "Your friends" %></h5>
 <div class=" columns is-multiline">
   <% @users.each do |another_user| %>
     <aside class="profile-card friend">
@@ -11,15 +11,16 @@
       </header>
       <div class="profile-bio">
         <p>Hello Friend</p>
-        <p> this profile is not avaiable yet</p>
+        <p> Friends: <%= User.num_friends(another_user)%></p>
+        <p> Friendedbys: <%= User.num_friendedbys(another_user)%></p>
       <footer class="card-footer">
           <a class="card-footer-item">
             <% if current_user.is_friend?(another_user) %>
-              <%= form_for current_user, url: remove_friend_path(user_id: another_user.id), method: :delete,remote: true do |f| %>
+              <%= form_for current_user, url: remove_friend_path(user_id: another_user.id), method: :delete do |f| %>
                 <button class="button is-danger add-remove is-inverted"><%= icon("user-times", "Remove Friend") %></button>
               <% end %>
             <% else %>
-              <%= form_for current_user.friendships.build(friend: another_user), remote: true do |f| %>
+              <%= form_for current_user.friendships.build(friend: another_user) do |f| %>
                 <%= f.hidden_field :friend_id %>
                 <button class="button is-primary add-remove is-inverted"><%= icon("user-plus", "Add Friend") %></button>
               <% end %>

@@ -15,14 +15,12 @@
             <%= image_tag "science.jpg", alt: "Science chat" %>
           </a>
           <div class="navbar-item">
-            <div class="field">
-              <div class="control has-icons-right">
-                <input class="input" type="text" placeholder="Search users">
-                <span class="icon is-right is-small">
-                  <%= fa_icon("search") %>
-                </span>
-              </div>
-            </div>
+            <%= form_tag users_path, :method => 'get' do  %>
+              <p>
+                <%= text_field_tag :search, params[:search],placeholder: "Name of user..."%>
+                <%= submit_tag "Search", :name => nil  %>
+              </p>
+            <% end %>
           </div>
 
           <div class="navbar-burger burger" data-target="navMenu">
@@ -41,9 +39,11 @@
                 &nbsp;<%= current_user.name %>
               <% end %>
               <%= link_to icon("comments-o", "Message"),  messages_path , class: "navbar-item" %>
-              <%= link_to icon("users", "All people"),  users_path , class: "navbar-item" %>
+              <%= link_to icon("globe", "All people"),  users_path , class: "navbar-item" %>
+              <%= link_to icon("home", "Home page"),  root_path , class: "navbar-item" %>
+              home
               <div class="navbar-item has-dropdown is-hoverable">
-                <a href="/" class="navbar-link">
+                <a class="navbar-link">
                   <%= icon("users", "Friends") %>
                 </a>
 
