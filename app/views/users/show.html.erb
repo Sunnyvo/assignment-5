@@ -39,15 +39,18 @@
 
 
     <div class="column is-centered">
-
-      <div class="field">
-        <label class="label" style="color:#0743cd; background-color:#a3a9b6">How do you feel to day?</label>
-        <div class="control">
-          <%= form_for %>
-          <textarea class="textarea" placeholder="We are here to understand you..."></textarea>
+      <% if @user==current_user %>
+        <div class="field">
+          <label class="label" style="color:#0743cd; background-color:#a3a9b6">How do you feel to day?</label>
+          <div class="control">
+            <%= form_for @post=Post.new do |f| %>
+              <%= f.hidden_field :user_id, value: current_user.id%>
+              <%= f.text_area :text_post, class: "form-control textarea", placeholder: "We are here to understand you..." %>
+              <%= f.submit "Post", class: "btn btn-primary" %>
+            <% end %>
+          </div>
         </div>
-      </div>
-
+      <% end %>
       <% @user.post.each do |po|%>
         <div class="card card-inverse" >
           <div class="card-name" style="background-color:#333; border-color: #333; margin-top:5px; color:white">
@@ -59,5 +62,6 @@
         </div>
       <% end %>
     </div>
+
   </div>
 </div>
