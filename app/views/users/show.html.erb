@@ -114,6 +114,23 @@
               </div>
             </div>
           <% end %>
+          <div class=" card-content" >
+            <div class="media">
+              <div class="media-left">
+                <p class="image is-32x32">
+                  <img src="<%= current_user.image_url %>" alt="19875190 1481159571950328 2204729161999237824 n" />
+                </p>
+              </div>
+              <div class="media-content">
+                <%= form_for Comment.new do |f| %>
+                  <p>
+                    <%= f.hidden_field :post_id, value: post.id  %>
+                    <%= f.text_field :body, :placeholder => "New comment", class: "input" %>
+                  </p>
+                <% end %>
+              </div>
+            </div>
+          </div>
         </div>
       <% end %>
     </div>

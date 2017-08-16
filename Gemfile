@@ -50,6 +50,7 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# gem 'google-webfonts-rails'
 gem "bulma-rails", github: "harley/bulma-rails"
 gem "font-awesome-rails"
 gem "jquery-rails"
@@ -58,5 +59,5 @@ gem 'omniauth-facebook', '~> 4.0.0'
 gem 'turbolinks', '~> 5'
 gem "http"
 gem 'kaminari'
-gem 'google-webfonts-rails'
+
 

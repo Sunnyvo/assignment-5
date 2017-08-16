@@ -5,13 +5,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post  = current_user.posts.build post_params
-    if @post.save
+    post  = current_user.posts.build post_params
+    if post.save
       flash[:success] = "I hear your soul"
     else
-      flash[:error] = "Error: #{@message.errors.full_messages.to_sentence}"
+      flash[:error] = "Error: #{post.errors.full_messages.to_sentence}"
     end
-    redirect_back(fallback_location: 'something')
+    redirect_back(fallback_location: root_path)
   end
 
 
