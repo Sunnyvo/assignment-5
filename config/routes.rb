@@ -28,7 +28,10 @@ Rails.application.routes.draw do
 
   #posts
   resources :posts
-  
+
+  #like
+  post "toggle_like" => "likes#toggle"
+
   # Home
   root 'home#index'
 end

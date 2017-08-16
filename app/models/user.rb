@@ -3,8 +3,12 @@ class User < ApplicationRecord
   has_many :friends, through: :friendships
   has_many :sent_messages, class_name: "Message", foreign_key: "sender_id"
   has_many :received_messages, class_name: "Message", foreign_key: "receiver_id"
-  has_many :post, dependent: :destroy
+  has_many :posts, foreign_key: "poster_id"
+  has_many :wallers, class_name: 'Post', foreign_key: "waller_id"
+  has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
   validates :name, :email, presence: true
+
   has_secure_password
 
   def self.from_omniauth(auth)
@@ -61,6 +65,22 @@ class User < ApplicationRecord
 
   def self.num_friendedbys(user)
     Friendship.where(friend: user).count
+  end
+
+  def name_or_email
+    name.present || email
+  end
+
+  def toggle_like!(item)
+    if like = likes.where(item: item).first
+      like.destroy
+    else
+      likes.where(item: item).create!
+    end
+  end
+
+  def liking?(item)
+    likes.where(item: item).exists?
   end
 
 end

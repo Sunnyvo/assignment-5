@@ -59,3 +59,4 @@ gem 'turbolinks', '~> 5'
 gem "http"
 gem 'kaminari'
 gem 'google-webfonts-rails'
+

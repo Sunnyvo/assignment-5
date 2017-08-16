@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post  = current_user.post.build post_params
+    @post  = current_user.posts.build post_params
     if @post.save
       flash[:success] = "I hear your soul"
     else
@@ -18,7 +18,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:user_id, :text_post)
+    params.require(:post).permit(:waller_id,:body)
   end
 
 end

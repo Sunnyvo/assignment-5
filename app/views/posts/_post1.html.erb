@@ -1,0 +1,11 @@
+        <div class="card-header title-color title-padding">
+          <%= time_ago_in_words post.updated_at %> ago
+        </div>
+        <div class="card card-inverse" >
+          <div class="card-name title-padding" style="background-color:#333; border-color: #333; margin-top:5px; color:white">
+              <%= post.poster.name %>
+          </div>
+          <div class="card-content" style="background-color:#9f8d89; color:#cd2a07">
+            <%= post.body %>
+          </div>
+        </div>

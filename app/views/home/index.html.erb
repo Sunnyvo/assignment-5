@@ -15,10 +15,10 @@
               <%= time_ago_in_words po.updated_at %> ago
             </div>
             <div class="card-name title-padding" style="background-color:#333; border-color: #333; margin-top:5px; color:white">
-                <%= po.user.name %>
+                <%= po.poster.name %>
             </div>
             <div class="card-content" style="background-color:#9f8d89; color:#cd2a07">
-              <%= po.text_post %>
+              <%= po.body %>
             </div>
           </div>
         <% end %>

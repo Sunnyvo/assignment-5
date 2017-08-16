@@ -44,32 +44,78 @@
 
 
     <div class="column is-centered">
-      <% if @user==current_user %>
         <div class="field">
           <label class="label title-padding" style="color:#0743cd; background-color:#a3a9b6">How do you feel to day?</label>
           <div class="control">
             <%= form_for @post=Post.new do |f| %>
-              <%= f.hidden_field :user_id, value: current_user.id%>
-              <%= f.text_area :text_post, class: "form-control textarea", placeholder: "We are here to understand you..." %>
+              <%= f.hidden_field :waller_id, value: @user.id %>
+              <%= f.text_area :body, class: "form-control textarea", placeholder: "We are here to understand you..." %>
               <%= f.submit "Post", class: "button is-primary" %>
             <% end %>
           </div>
         </div>
-      <% end %>
-      <% @user.post.each do |po|%>
-        <div class="card-header title-color title-padding">
-          <%= time_ago_in_words po.updated_at %> ago
-        </div>
-        <div class="card card-inverse" >
-          <div class="card-name title-padding" style="background-color:#333; border-color: #333; margin-top:5px; color:white">
-              <%= @user.name %>
+      <% @user.wallers.each do |post|%>
+        <div class="post card">
+          <div class="card-content">
+            <div class="media">
+              <div class="media-left">
+                <p class="image is-32x32">
+                  <img src="<%= post.poster.image_url %>" alt="Twitter square">
+                </p>
+              </div>
+              <div class="media-content">
+                <p class="is-title">
+
+                  <strong><%= link_to post.poster.name, profile_path(id: post.poster)  %></strong>
+                </p>
+                <small><%= time_ago_in_words post.updated_at %> ago</small>
+              </div>
+            </div>
+            <div class="content">
+              <%= simple_format post.body %>
+            </div>
           </div>
-          <div class="card-content" style="background-color:#9f8d89; color:#cd2a07">
-            <%= po.text_post %>
+          <div class="card-footer">
+            <div class="level">
+              <div class="level-left">
+                <div class="level-item">
+                  <%= link_to fa_icon("thumbs-up", text: "Like"), toggle_like_path(post_id: post.id),
+                  class: "button is-white #{'is-liked' if current_user.liking?(post)}", method: "post" %>
+                </div>
+                <div class="level-item">
+                  <%= link_to fa_icon("comments", text: "Comment"), "/changeme", class: "button is-white" %>
+                </div>
+              </div>
+            </div>
           </div>
+          <div class="card-footer">
+            <%= display_likers(post) %>
+          </div>
+          <% post.comments.each do |cmt| %>
+            <div class="comment card-content">
+              <div class="media">
+                <div class="media-left">
+                  <p class="image is-32x32">
+                    <img src="<%= cmt.user.image_url %>" alt="19875190 1481159571950328 2204729161999237824 n" />
+                  </p>
+                </div>
+                <div class="media-content">
+                    <%= cmt.body %>
+                  <div class="level">
+                    <div class="level-left">
+                      <div class="level-item">
+                        <%= link_to fa_icon("thumbs-up", text: "Like"), toggle_like_path(comment_id: cmt.id),
+                        class: "button is-white #{'is-liked' if current_user.liking?(cmt)}", method: "post" %>
+                         <%= time_ago_in_words cmt.updated_at %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
         </div>
       <% end %>
     </div>
-
   </div>
 </div>
