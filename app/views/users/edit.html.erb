@@ -25,12 +25,14 @@
             </div>
 
             <div class="field">
-              <div class="label">URL avatar</div>
+              <%= f.label :avatar, class: "label" %>
               <div class="control">
-                <%= f.text_field :image_url, class: 'input' %>
-                <%= image_tag current_user.image_url_or_default %>
+                <%= f.file_field :avatar%>
               </div>
             </div>
+              <div class="field">
+                <%= image_tag current_user.image_url_or_default %>
+              </div>
             <%= f.submit "Update Profile", class: "button is-primary" %>
           <% end %>
         </div>

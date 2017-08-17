@@ -9,16 +9,87 @@
         </div>
       </div>
       <div class="column">
-        <% Post.all.each do |po|%>
-          <div class="card card-inverse card-margin" >
-            <div class="card-header title-padding">
-              <%= time_ago_in_words po.updated_at %> ago
+        <% @posts.each do |post|%>
+          <div class="post card">
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <p class="image is-32x32">
+                    <img src="<%= post.poster.image_url %>" alt="Twitter square">
+                  </p>
+                </div>
+                <div class="media-content">
+                  <p class="is-title">
+
+                    <strong><%= link_to post.poster.name, profile_path(id: post.poster)  %></strong>
+                    <% if post.waller.name!= post.poster.name %>
+                      <i class="fa fa-caret-right" aria-hidden="true"></i>
+                      <strong><%= link_to post.waller.name, profile_path(id: post.waller)  %></strong>
+                    <% end %>
+                  </p>
+                  <small><%= time_ago_in_words post.updated_at %> ago</small>
+                </div>
+              </div>
+              <div class="content">
+                <%= simple_format post.body %>
+              </div>
             </div>
-            <div class="card-name title-padding" style="background-color:#333; border-color: #333; margin-top:5px; color:white">
-                <%= po.poster.name %>
+            <div class="card-footer">
+              <div class="level">
+                <div class="level-left">
+                  <div class="level-item">
+                    <%= link_to fa_icon("thumbs-up", text: "Like"), toggle_like_path(post_id: post.id),
+                    class: "button is-white #{'is-liked' if current_user.liking?(post)}", method: "post" %>
+                  </div>
+                  <div class="level-item">
+                    <%= link_to fa_icon("comments", text: "Comment"), "/changeme", class: "button is-white" %>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="card-content" style="background-color:#9f8d89; color:#cd2a07">
-              <%= po.body %>
+            <div class="card-footer footer-like">
+              <%= display_likers(post) %>
+            </div>
+            <% post.comments.each do |cmt| %>
+              <div class="comment card-content">
+                <div class="media">
+                  <div class="media-left">
+                    <p class="image is-32x32">
+                      <img src="<%= cmt.user.image_url %>" alt="19875190 1481159571950328 2204729161999237824 n" />
+                    </p>
+                  </div>
+                  <div class="media-content">
+                     <strong><%= link_to cmt.user.name, profile_path(id: post.poster)  %></strong>
+                    <%= cmt.body %>
+                    <div class="level">
+                      <div class="level-left">
+                        <div class="level-item">
+                          <%= link_to fa_icon("thumbs-up", text: "Like"), toggle_like_path(comment_id: cmt.id),
+                          class: "button is-white #{'is-liked' if current_user.liking?(cmt)}", method: "post" %>
+                          <%= time_ago_in_words cmt.updated_at %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <div class=" card-content" >
+              <div class="media">
+                <div class="media-left">
+                  <p class="image is-32x32">
+                    <img src="<%= current_user.image_url %>" alt="19875190 1481159571950328 2204729161999237824 n" />
+                  </p>
+                </div>
+                <div class="media-content">
+                  <%= form_for Comment.new do |f| %>
+                    <p>
+                      <%= f.hidden_field :post_id, value: post.id  %>
+                      <%= f.text_field :body, :placeholder => "New comment", class: "input" %>
+                    </p>
+                  <% end %>
+                </div>
+              </div>
             </div>
           </div>
         <% end %>
@@ -29,3 +100,5 @@
     <%= link_to icon("facebook", "Log in with Facebook"), "/auth/facebook", class: "button is-info" %>
   <% end %>
 </div>
+
+

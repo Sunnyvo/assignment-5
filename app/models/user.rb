@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   validates :name, :email, presence: true
+  mount_uploader :avatar, AvatarUploader
 
   has_secure_password
 
@@ -22,7 +23,7 @@ class User < ApplicationRecord
   end
 
   def image_url_or_default
-    image_url.presence || "science.jpg"
+    avatar.url|| image_url.presence || "science.jpg"
   end
 
   def add_friend(another_user)

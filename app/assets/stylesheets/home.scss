@@ -63,6 +63,19 @@ body {
 //     background-size: cover;
 }
 
+.footer-like
+{
+  border-bottom: solid   #c8d7dc ;
+  border-top: solid  #c8d7dc  ;
+  border-width: 1px;
+}
+
+.comment{
+  border-bottom: solid   #c8d7dc ;
+  border-top: solid  #c8d7dc  ;
+  border-width: 1px;
+  line-height: 0.8;
+}
 
 .card-hover:hover {
   background-color: lightgray;

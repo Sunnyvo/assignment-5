@@ -59,5 +59,8 @@ gem 'omniauth-facebook', '~> 4.0.0'
 gem 'turbolinks', '~> 5'
 gem "http"
 gem 'kaminari'
-
+gem 'simplecov', :require => false, :group => :test
+gem 'dotenv-rails', groups: [:development, :test], require: 'dotenv/rails-now'
+gem 'carrierwave', '~> 1.0'
+gem 'carrierwave-aws'
 

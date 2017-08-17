@@ -21,4 +21,5 @@ class PostsController < ApplicationController
     params.require(:post).permit(:waller_id,:body)
   end
 
+  
 end
