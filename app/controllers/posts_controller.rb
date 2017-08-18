@@ -8,6 +8,7 @@ class PostsController < ApplicationController
     @post  = current_user.posts.build post_params
     if @post.save
         PostMailer.notify_new_post(@post).deliver_now
+        NotifySlack.new.notify_new_post(@post)
         # redirect_to profile_path(, notice: 'User was successfully created.') }
       flash[:success] = "I hear your soul"
     else

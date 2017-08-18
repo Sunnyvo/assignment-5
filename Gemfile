@@ -63,4 +63,4 @@ gem 'simplecov', :require => false, :group => :test
 gem 'dotenv-rails', groups: [:development, :test], require: 'dotenv/rails-now'
 gem 'carrierwave', '~> 1.0'
 gem 'carrierwave-aws'
-
+gem 'slack-notifier'
