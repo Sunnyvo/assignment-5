@@ -1,0 +1,54 @@
+ <div class="post card" id="<%= dom_id post %>">
+  <div class="card-content">
+    <div class="media">
+      <div class="media-left">
+        <p class="image is-32x32">
+          <img src="<%= post.poster.image_url %>" alt="Twitter square">
+        </p>
+      </div>
+      <div class="media-content">
+        <p class="is-title">
+
+          <strong><%= link_to post.poster.name, profile_path(id: post.poster)  %></strong>
+        </p>
+        <small><%= time_ago_in_words post.updated_at %> ago</small>
+      </div>
+    </div>
+    <div class="content">
+      <%= simple_format post.body %>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <%= link_to fa_icon("thumbs-up", text: "Like"), toggle_like_path(post_id: post.id),
+          class: "button is-white js-like-button #{'is-liked' if current_user.liking?(post)}", method: "post", remote: true %>
+        </div>
+        <div class="level-item">
+          <%= link_to fa_icon("comments", text: "Comment"), "/changeme", class: "button is-white" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer footer-like">
+    <%= display_likers(post) %>
+  </div>
+  <div class="comments-list" id="<%=dom_id post %>">
+    <% post.comments.each do |cmt| %>
+      <%= render "comments/show", cmt: cmt %>
+    <% end %>
+  </div>
+  <div class=" card-content" >
+    <div class="media">
+      <div class="media-left">
+        <p class="image is-32x32">
+          <img src="<%= current_user.image_url %>" alt="19875190 1481159571950328 2204729161999237824 n" />
+        </p>
+      </div>
+      <div class="media-content new-comment", id="<%=dom_id post %>">
+        <%= render "comments/new", post: post %>
+      </div>
+    </div>
+  </div>
+</div>

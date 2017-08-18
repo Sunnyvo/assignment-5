@@ -1,13 +1,21 @@
 class CommentsController < ApplicationController
-
+  def new
+    @comment = Comment.new
+  end
   def create
-    comment = current_user.comments.build comment_params
-    if comment.save
+    @comment = current_user.comments.build comment_params
+    if @comment.save
       flash[:success] = "comment ok!"
     else
-      flash[:error] = "Error: #{comment.errors.full_messages.to_sentence}"
+      flash[:error] = "Error: #{@comment.errors.full_messages.to_sentence}"
     end
-    redirect_back(fallback_location: root_path)
+    @item = @comment.post
+    puts "heelo"
+    puts @item
+    respond_to do |f|
+      f.html{ redirect_back(fallback_location: root_path) }
+      f.js { render 'comment' }
+    end
   end
 
   private

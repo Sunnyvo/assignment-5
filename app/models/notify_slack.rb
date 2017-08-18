@@ -4,6 +4,9 @@ class NotifySlack < ApplicationRecord
   end
 
   def notify_new_post(post)
-    @notifier.ping post.body
+    @notifier.ping(post.body,
+      username: post.poster.name_or_email,
+      icon_url: post.poster.avatar.url
+    )
   end
 end

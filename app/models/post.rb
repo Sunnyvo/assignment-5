@@ -4,4 +4,6 @@ class Post < ApplicationRecord
   belongs_to :waller, class_name: "User"
   has_many :likes, as: :item
   has_many :comments, dependent: :destroy
+  mount_uploader :photo, AvatarUploader
+
 end

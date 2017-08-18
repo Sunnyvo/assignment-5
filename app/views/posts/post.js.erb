@@ -1,0 +1,2 @@
+$(".posts-list").prepend('<%= escape_javascript(render "show", post: @post) %>');
+$(".new-post").find(".textarea").val("");

@@ -34,6 +34,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id] )
+    @post = Post.new
+    @comment = Comment.new
   end
 
   def friends

@@ -69,7 +69,7 @@ class User < ApplicationRecord
   end
 
   def name_or_email
-    name.present || email
+    name.present? ? name : email
   end
 
   def toggle_like!(item)

@@ -5,16 +5,20 @@ class PostsController < ApplicationController
   end
 
   def create
+    @comment = Comment.new
     @post  = current_user.posts.build post_params
     if @post.save
-        PostMailer.notify_new_post(@post).deliver_now
-        NotifySlack.new.notify_new_post(@post)
-        # redirect_to profile_path(, notice: 'User was successfully created.') }
       flash[:success] = "I hear your soul"
+      respond_to do |f|
+        f.html{ redirect_back(fallback_location: root_path) }
+        f.js { render 'post' }
+      end
+      PostMailer.notify_new_post(@post).deliver_now
+      NotifySlack.new.notify_new_post(@post)
     else
-      flash[:error] = "Error: #{post.errors.full_messages.to_sentence}"
+      flash[:error] = "Error: #{@post.errors.full_messages.to_sentence}"
     end
-    redirect_back(fallback_location: root_path)
+
   end
 
 

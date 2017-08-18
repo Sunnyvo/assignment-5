@@ -1,0 +1,21 @@
+<div class="comment card-content" id ="<%= dom_id cmt %>">
+  <div class="media">
+    <div class="media-left">
+      <p class="image is-32x32">
+        <img src="<%= cmt.user.image_url %>" alt="19875190 1481159571950328 2204729161999237824 n" />
+      </p>
+    </div>
+    <div class="media-content">
+        <%= cmt.body %>
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item">
+            <%= link_to fa_icon("thumbs-up", text: "Like"), toggle_like_path(comment_id: cmt.id),
+            class: "button is-white js-like-button #{'is-liked' if current_user.liking?(cmt)}", method: "post", remote: true %>
+              <%= time_ago_in_words cmt.updated_at %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

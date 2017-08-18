@@ -41,98 +41,18 @@
         </div>
       </div>
     </div>
-
-
     <div class="column is-centered">
         <div class="field">
           <label class="label title-padding" style="color:#0743cd; background-color:#a3a9b6">How do you feel to day?</label>
-          <div class="control">
-            <%= form_for @post=Post.new do |f| %>
-              <%= f.hidden_field :waller_id, value: @user.id %>
-              <%= f.text_area :body, class: "form-control textarea", placeholder: "We are here to understand you..." %>
-              <%= f.submit "Post", class: "button is-primary" %>
-            <% end %>
+          <div class="control new-post">
+            <%= render "posts/new" %>
           </div>
         </div>
-      <% @user.wallers.each do |post|%>
-        <div class="post card">
-          <div class="card-content">
-            <div class="media">
-              <div class="media-left">
-                <p class="image is-32x32">
-                  <img src="<%= post.poster.image_url %>" alt="Twitter square">
-                </p>
-              </div>
-              <div class="media-content">
-                <p class="is-title">
-
-                  <strong><%= link_to post.poster.name, profile_path(id: post.poster)  %></strong>
-                </p>
-                <small><%= time_ago_in_words post.updated_at %> ago</small>
-              </div>
-            </div>
-            <div class="content">
-              <%= simple_format post.body %>
-            </div>
-          </div>
-          <div class="card-footer">
-            <div class="level">
-              <div class="level-left">
-                <div class="level-item">
-                  <%= link_to fa_icon("thumbs-up", text: "Like"), toggle_like_path(post_id: post.id),
-                  class: "button is-white #{'is-liked' if current_user.liking?(post)}", method: "post" %>
-                </div>
-                <div class="level-item">
-                  <%= link_to fa_icon("comments", text: "Comment"), "/changeme", class: "button is-white" %>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer footer-like">
-            <%= display_likers(post) %>
-          </div>
-          <% post.comments.each do |cmt| %>
-            <div class="comment card-content">
-              <div class="media">
-                <div class="media-left">
-                  <p class="image is-32x32">
-                    <img src="<%= cmt.user.image_url %>" alt="19875190 1481159571950328 2204729161999237824 n" />
-                  </p>
-                </div>
-                <div class="media-content">
-                    <%= cmt.body %>
-                  <div class="level">
-                    <div class="level-left">
-                      <div class="level-item">
-                        <%= link_to fa_icon("thumbs-up", text: "Like"), toggle_like_path(comment_id: cmt.id),
-                        class: "button is-white #{'is-liked' if current_user.liking?(cmt)}", method: "post" %>
-                         <%= time_ago_in_words cmt.updated_at %>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% end %>
-          <div class=" card-content" >
-            <div class="media">
-              <div class="media-left">
-                <p class="image is-32x32">
-                  <img src="<%= current_user.image_url %>" alt="19875190 1481159571950328 2204729161999237824 n" />
-                </p>
-              </div>
-              <div class="media-content">
-                <%= form_for Comment.new do |f| %>
-                  <p>
-                    <%= f.hidden_field :post_id, value: post.id  %>
-                    <%= f.text_field :body, :placeholder => "New comment", class: "input" %>
-                  </p>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
+      <div class="posts-list">
+        <% @user.wallers.order("created_at DESC").each do |post|%>
+          <%= render "posts/show", post: post %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
