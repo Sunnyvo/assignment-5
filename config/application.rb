@@ -14,5 +14,18 @@ module ScienceChat
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+  config.active_record.dump_schema_after_migration = false
+  config.action_mailer.asset_host = "http://localhost:3000"
+  config.action_mailer.delivery_method = :smtp
+    ActionMailer::Base.smtp_settings = {
+      :user_name => ENV["SENDGRID_USERNAME"],
+      :password => ENV["SENDGRID_PASSWORD"],
+      :api_key  => ENV["SENDGRID_API_KEY"],
+      :domain   => "http://localhost:3000",
+      :address  => "smtp.sendgrid.net",
+      :port     => 587,
+      :authentication => :plain,
+      :enable_starttls_auto => true,
+    }
   end
 end
