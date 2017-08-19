@@ -8,12 +8,11 @@ class PostsController < ApplicationController
     @comment = Comment.new
     @post  = current_user.posts.build post_params
     if @post.save
-      flash[:success] = "I hear your soul"
       respond_to do |f|
         f.html{ redirect_back(fallback_location: root_path) }
         f.js { render 'post' }
       end
-      PostMailer.notify_new_post(@post).deliver_now
+      PostMailer.notify_new_post(@post).deliver_later
       NotifySlack.new.notify_new_post(@post)
     else
       flash[:error] = "Error: #{@post.errors.full_messages.to_sentence}"

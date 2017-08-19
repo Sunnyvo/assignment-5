@@ -8,6 +8,6 @@ class PostMailer < ApplicationMailer
   def notify_new_post(post)
     @post = post
 
-    mail to: "votanphu.2101@gmail.com", subject: "..."
+    mail to: "votanphu.2101@gmail.com", subject: "you have a new post"
   end
 end

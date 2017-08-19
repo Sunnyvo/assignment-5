@@ -36,8 +36,7 @@
                       <tr><td colspan="3" height="100"></td></tr>
                       <tr>
                         <td colspan="3" height="60" align="center">
-                          <div border="0" style="border: none; line-height: 60px; color: #ffffff; font-family: Verdana, Geneva, sans-serif; font-size: 52px; text-transform: uppercase; font-weight: bolder;">HELLO, <%= @post.poster.name%></div>
-                        </td>
+                          <div border="0" style="border: none; line-height: 60px; color: #ffffff; font-family: Verdana, Geneva, sans-serif; font-size: 52px; text-transform: uppercase; font-weight: bolder;">HELLO, <%= @comment.post.poster.name%></div>
                       </tr>
                       <tr>
                         <td colspan="3">
@@ -48,8 +47,10 @@
                                 <td align="center">
                                   <div border="0" style="border: none; height: 60px;">
                                     <p style="font-size: 18px; line-height: 24px; font-family: Verdana, Geneva, sans-serif; color: #ffffff; text-align: center; mso-table-lspace:0;mso-table-rspace:0;">
-                                      You've got a new post on your wall:
-                                      <%= @post.poster.name %> has just posted something on your wall: <%= @post.body %>
+                                      someone comment on your post:
+                                    </p>
+                                      <h3> your post: <%= @comment.post.body %>  </h3> <br/>
+                                      <%= @comment.user.name%> has just replied your post: <%= @comment.body %>
                                     </p>
                                     <p>
 

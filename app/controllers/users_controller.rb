@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     else
       render 'new'
     end
+    login(@user)
   end
 
   def edit

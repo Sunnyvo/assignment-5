@@ -5,7 +5,6 @@ class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.build comment_params
     if @comment.save
-      flash[:success] = "comment ok!"
     else
       flash[:error] = "Error: #{@comment.errors.full_messages.to_sentence}"
     end
@@ -16,6 +15,7 @@ class CommentsController < ApplicationController
       f.html{ redirect_back(fallback_location: root_path) }
       f.js { render 'comment' }
     end
+    CommentMailer.notify_new_comment(@comment).deliver_later
   end
 
   private
