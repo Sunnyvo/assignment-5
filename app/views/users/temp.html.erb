@@ -1,0 +1,33 @@
+ <aside class="profile-card friend", id="dom_id another_user">
+      <header>
+        <%= link_to profile_path(id: another_user) do %>
+          <%= image_tag another_user.image_url_or_default%>
+        <% end %>
+        <h1 class="title is-4"><%= another_user.name %></h1>
+        <h2 class="subtitle is-6"><%= another_user.email %></h2>
+      </header>
+      <div class="profile-bio">
+        <p>Hello Friend</p>
+        <p> Friends: <%= User.num_friends(another_user)%></p>
+        <p> Friendedbys: <%= User.num_friendedbys(another_user)%></p>
+      <footer class="card-footer">
+
+            <% if current_user.is_friend?(another_user) %>
+              <a class="card-footer-item">
+                <%= form_for current_user, url: remove_friend_path(user_id: another_user.id), method: :delete do |f| %>
+                  <button class="button is-danger add-remove is-inverted js-remove"><%= icon("user-times", "Remove Friend") %></button>
+                <% end %>
+              </a>
+                <li class="card-footer-item"> <%= link_to icon("envelope-o","Contact"), new_message_path %> </li>
+            <% else %>
+              <a class="card-footer-item">
+                <%= form_for current_user.friendships.build(friend: another_user) do |f| %>
+                  <%= f.hidden_field :friend_id %>
+                  <button class="button is-primary add-remove is-inverted js-add"><%= icon("user-plus", "Add Friend") %></button>
+                <% end %>
+              </a>
+            <% end %>
+
+
+      </footer>
+    </aside>
