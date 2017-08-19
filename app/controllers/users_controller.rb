@@ -39,12 +39,11 @@ class UsersController < ApplicationController
   end
 
   def friends
-    @users = []
-    if params[:relate] == "fb"
-      @users = Friendship.where(friend: current_user).map {|e| e.user}
-    else
-      @users= current_user.friends
-    end
+    @users= current_user.friends
+  end
+
+  def friendedby
+    @users = Friendship.where(friend: current_user).map {|e| e.user}
   end
 
   private

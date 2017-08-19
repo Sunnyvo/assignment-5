@@ -1,0 +1,6 @@
+<h5 style="color:#b5a3b6; background-color: #1e97bd; text-align: center;">Who wanna be friended with you</h5>
+<div class=" columns is-multiline">
+  <% @users.each do |friend| %>
+    <%= render "card", another_user: friend %>
+  <% end %>
+</div>

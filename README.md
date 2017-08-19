@@ -25,5 +25,6 @@ A Facebook clone for the Bootcamp Ruby class.
 - [x] User can see an awesome profile amination
 - [x] User can see the number friends and the number friendby of other user.
 - [x] User can search a new person in network.
-- [x] User can see all newest posts of all friends at home page (desc by time)
+- [x] User can see all newest posts of all friends at home page (desc by time).
+- [x] Ajax for addfriend, remove friend, new post, new comment, like comments, like post.
 # assignment-5
