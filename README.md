@@ -31,10 +31,11 @@ A Facebook clone for the Bootcamp Ruby class.
 - [x] Ajax for a new post
 - [x] Ajax for a new comment
 - [x] Ajax  for like comments, like posts.
+- [x] Ajax for display people like.
 ## Email
 - [x] User will recieve an email when someone post on the wall.
 - [x] User get an email notification when she receive a message.
 - [x] User will receive and email when someone ends their relationship.
-- [x] Notify user if there are too many attempts to sign in  with incorrect
+- [ ] Notify user if there are too many attempts to sign in  with incorrect
 
 # assignment-5

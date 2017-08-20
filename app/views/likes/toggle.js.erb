@@ -1,1 +1,2 @@
 $("#<%= dom_id @item %>").find(".js-like-button").first().toggleClass("is-liked");
+$("#<%= dom_id @item %>").find(".footer-like").html('<%= escape_javascript(render "posts/like", post: @item) %>');
