@@ -2,7 +2,7 @@
   <div class="media">
     <div class="media-left">
       <p class="image is-32x32">
-        <img src="<%= cmt.user.image_url %>" alt="19875190 1481159571950328 2204729161999237824 n" />
+        <%= image_tag(cmt.user.image_url_or_default, class: "card-image") %>
       </p>
     </div>
     <div class="media-content">

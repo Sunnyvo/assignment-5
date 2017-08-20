@@ -7,7 +7,6 @@
           <button class="delete js-delete-noti"></button>
           <h3> I can create a chatbox realtime here after learning <strong>nodejs</strong> and <strong>socket.io</strong></h3>
         </div>
-
       </div>
       <div class="column">
         <div class="field">
@@ -28,10 +27,5 @@
     <%= link_to icon("facebook", "Log in with Facebook"), "/auth/facebook", class: "button is-info" %>
   <% end %>
 </div>
-
-
-
-
-
 
 

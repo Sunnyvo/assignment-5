@@ -30,7 +30,7 @@
             <div class="field">
               <div class="label">Image:</div>
               <div class="control">
-                <img class="card-image" src="<%= @user.image_url_or_default %>" alt="Card image cap">
+                <%= image_tag(@user.image_url_or_default, class: "card-image") %>
               </div>
             </div>
             <% if current_user.id == @user.id %>
@@ -42,12 +42,12 @@
       </div>
     </div>
     <div class="column is-centered">
-        <div class="field">
-          <label class="label title-padding" style="color:#0743cd; background-color:#a3a9b6">How do you feel to day?</label>
-          <div class="control new-post">
-            <%= render "posts/new" %>
-          </div>
+      <div class="field">
+        <label class="label title-padding" style="color:#0743cd; background-color:#a3a9b6">How do you feel to day?</label>
+        <div class="control new-post">
+          <%= render "posts/new" %>
         </div>
+      </div>
       <div class="posts-list">
         <% @user.wallers.order("created_at DESC").each do |post|%>
           <%= render "posts/show", post: post %>

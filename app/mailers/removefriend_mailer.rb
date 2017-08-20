@@ -5,9 +5,9 @@ class RemovefriendMailer < ApplicationMailer
   #
   #   en.removefriend_mailer.notify_end_friend.subject
   #
-  def notify_end_friend
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
+  def notify_end_friend(cu,au)
+    @current_user= cu
+    @another_user = au
+    mail to: @another_user.email , subject: "Some one end your relationship"
   end
 end

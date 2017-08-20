@@ -19,9 +19,11 @@
               <%= password_field_tag :password, nil, class: "input" %>
             </div>
           </div>
-          <div class="control">
+          <div class="field">
             <button class="button is-primary">Log In</button>
+            <%= link_to icon("facebook", "Log in with Facebook"), "/auth/facebook", class: "button is-info" %>
           </div>
+
         <% end %>
       </div>
     </div>

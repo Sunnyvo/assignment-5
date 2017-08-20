@@ -10,6 +10,7 @@ class FriendshipsController < ApplicationController
 
   def destroy
     another_user = User.find params[:user_id]
+    RemovefriendMailer.notify_end_friend(current_user,another_user).deliver_later
     current_user.friends.delete(another_user)
     @item = another_user
     respond_to do |f|

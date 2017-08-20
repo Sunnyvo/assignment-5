@@ -34,5 +34,7 @@ A Facebook clone for the Bootcamp Ruby class.
 ## Email
 - [x] User will recieve an email when someone post on the wall.
 - [x] User get an email notification when she receive a message.
-- [x] User will receive and email when someone ends their relationship
+- [x] User will receive and email when someone ends their relationship.
+- [x] Notify user if there are too many attempts to sign in  with incorrect
+
 # assignment-5

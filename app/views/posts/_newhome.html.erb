@@ -1,0 +1,5 @@
+<%= form_for @post, remote: true do |f| %>
+  <%= f.hidden_field :waller_id, value: id %>
+  <%= f.text_area :body, class: "form-control textarea", placeholder: "We are here to understand you..." %>
+  <%= f.submit "Post", class: "button is-primary" %>
+<% end %>

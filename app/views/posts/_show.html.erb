@@ -3,7 +3,7 @@
     <div class="media">
       <div class="media-left">
         <p class="image is-32x32">
-          <img src="<%= post.poster.image_url %>" alt="Twitter square">
+          <%= image_tag(post.poster.image_url_or_default, class: "card-image") %>
         </p>
       </div>
       <div class="media-content">
@@ -43,7 +43,7 @@
     <div class="media">
       <div class="media-left">
         <p class="image is-32x32">
-          <img src="<%= current_user.image_url %>" alt="19875190 1481159571950328 2204729161999237824 n" />
+           <%= image_tag(current_user.image_url_or_default, class: "card-image") %>
         </p>
       </div>
       <div class="media-content new-comment", id="<%=dom_id post %>">
